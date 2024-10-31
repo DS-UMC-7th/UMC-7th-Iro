@@ -19,6 +19,9 @@ public class Restaurant extends BaseEntity {
     @JoinColumn(name = "region_id")
     private Region region; // 지역
 
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
+    private List<Mission> missionList = new ArrayList<>(); //Mission 양방향 연관관계 매핑
+
     @Column(nullable = false, length = 50)
     private String name; // 이름
 
