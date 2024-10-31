@@ -1,0 +1,30 @@
+package umcWeek5.umc.domain;
+
+import jakarta.persistence.*;
+import lombok.*;
+import umcWeek5.umc.domain.base.BaseEntity;
+
+@Entity //해당클래스가 JPA의 엔티티임을 명시
+@Getter //getter를 만들어주는 어노테이션
+@Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor //빌더패턴
+public class Restaurant extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id; // 기본키
+
+    @ManyToOne
+    @JoinColumn(name = "region_id")
+    private Region region; // 지역
+
+    @Column(nullable = false, length = 50)
+    private String name; // 이름
+
+    @Column(nullable = false, length = 150)
+    private String address; // 주소
+
+    private double score; //점수
+
+}
